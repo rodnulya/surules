@@ -1,0 +1,13 @@
+      # Сканирование портов
+      alert tcp any any -> any any (
+        flags: S;
+        threshold: type both, track by_src, count 10, seconds 10;
+        msg:"Possible port scan";
+        sid:1000008; rev:1;
+        )
+        alert tcp any any -> any any (
+            flags: U;
+           threshold: type both, track by_src, count 10, seconds 10;
+            msg:"Possible udp port scan";
+            sid:1000009; rev:1;
+        )
